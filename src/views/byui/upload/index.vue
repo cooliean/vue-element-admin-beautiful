@@ -1,5 +1,6 @@
 <template>
   <div class="upload-container">
+    <el-divider content-position="left">演示环境可能无法模拟上传 </el-divider>
     <byui-upload
       url="/upload"
       name="file"

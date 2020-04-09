@@ -1,10 +1,10 @@
 <template>
   <div class="code-generator-container">
-    <el-row :gutter="20">
-      <el-col :span="5">
+    <el-row :gutter="15">
+      <el-col :xs="24" :sm="24" :md="4" :lg="6" :xl="6">
         <TableEditor @change="setTableData" />
       </el-col>
-      <el-col :span="19">
+      <el-col :xs="24" :sm="24" :md="20" :lg="18" :xl="18">
         <TableExhibition :table-data="tableData" />
       </el-col>
     </el-row>

@@ -10,7 +10,7 @@
       </el-option>
     </el-select>
     <el-row :gutter="15">
-      <el-col :span="16">
+      <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
         <el-timeline
           v-loading="listLoading"
           :element-loading-text="elementLoadingText"
@@ -27,23 +27,6 @@
                 <a target="_blank" :href="item.link">
                   {{ item.title }}
                 </a>
-                <span style="float: right; margin-top: -8px;">
-                  <el-button
-                    v-if="item.description"
-                    @click="handleDialog(item.description, item.link)"
-                  >
-                    查看详情
-                  </el-button>
-                  <a
-                    style="margin-left: 10px;"
-                    target="_blank"
-                    :href="item.link"
-                  >
-                    <el-button>
-                      阅读原文
-                    </el-button></a
-                  >
-                </span>
               </h4>
             </el-card>
           </el-timeline-item>
@@ -79,17 +62,7 @@
 </template>
 
 <script>
-import {
-  getFbzbList,
-  getJjList,
-  getKyzgList,
-  getLhgList,
-  getQdysjList,
-  getRyfdbkList,
-  getUizgList,
-  getZgzfList,
-  getZkList,
-} from "@/api/news";
+import { getFbzbList, getQdysjList } from "@/api/news";
 
 export default {
   name: "News",

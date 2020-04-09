@@ -39,7 +39,7 @@ if (process.env.NODE_ENV === "production") {
   if (__Ox76877[0x1] === copyright) {
     authorizationPeriod = 30 * 12 * 10;
   } else {
-    authorizationPeriod = 30 * 12 * 1;
+    authorizationPeriod = 30 * 12 * 3;
   }
   if (authorizationPeriod < 0) {
     authorizationPeriod = 0;
@@ -91,7 +91,7 @@ if (process.env.NODE_ENV === "production") {
 }
 if (process.env.NODE_ENV !== "development") {
   console.log(
-    "\n %c " + copyright + "  %c 博云前端敏捷开发平台2.2 \n\n",
+    "\n %c " + copyright + "  %c Byui-2.3 \n\n",
     "color: #fadfa3; background: #030307; padding:5px 0;",
     "background: #fadfa3; padding:5px 0;"
   );

@@ -22,9 +22,10 @@ export default {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 .byui-query-form {
+  margin-bottom: 10px;
   ::v-deep {
     .top-panel {
       @include panel;
@@ -38,11 +39,17 @@ export default {
 
     .left-panel {
       @include panel;
+      .el-button {
+        margin: 5px;
+      }
     }
 
     .right-panel {
       @include panel;
       justify-content: flex-end;
+      .el-form-item {
+        margin: 5px;
+      }
     }
   }
 }

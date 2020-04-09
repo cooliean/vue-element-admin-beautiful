@@ -1,11 +1,7 @@
 <template>
   <div class="table-query">
-    <div style="margin-top: 5px;">
-      温馨提示：表格可拖动可开启自定义
-      <span style="color: red;">json最后一个字段不能加逗号</span>
-    </div>
     <div>
-      <el-button type="primary" @click="openCodeDialog">查看代码 </el-button>
+      <el-button type="primary" @click="openCodeDialog">查看代码</el-button>
       <el-button type="primary" @click="handleClipboard(srcTableCode, $event)"
         >复制代码
       </el-button>
@@ -23,7 +19,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { handleClipboard } from "@/utils";
+import clipboard from "@/utils/clipboard";
 import CodeMirror from "codemirror";
 
 export default {
@@ -43,9 +39,7 @@ export default {
   },
   methods: {
     handleClipboard(text, evnet) {
-      handleClipboard(text, evnet).then(() => {
-        this.baseMessage("已经复制到剪贴板", "success");
-      });
+      clipboard(text, evnet);
     },
     openCodeDialog() {
       this.dialogVisible = true;
@@ -60,7 +54,7 @@ export default {
       }, 0);
     },
     closeCodeDialog() {
-      this.handleClipboard(this.srcTableCode, event);
+      this.handleClipboard();
       this.dialogVisible = false;
     },
   },
@@ -70,7 +64,7 @@ export default {
 <style lang="scss" scoped>
 .table-query {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   height: 45px;
 
   ::v-deep {

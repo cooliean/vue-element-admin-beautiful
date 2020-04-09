@@ -1,16 +1,18 @@
 <template>
   <div class="errorLog-container">
-    <Error />
-    错误日志测试页，这里会模拟一个js错误，除了这个错误所有页面的异常捕获问题必须解决
+    <el-divider content-position="left"
+      >这里会在顶部navbar上模拟一个控制台错误日志</el-divider
+    >
+    <error-test />
   </div>
 </template>
 
 <script>
-import Error from "./components/ErrorTest";
+import ErrorTest from "./components/ErrorTest";
 
 export default {
   name: "ErrorLog",
-  components: { Error },
+  components: { ErrorTest },
 };
 </script>
 <style lang="scss" scoped></style>

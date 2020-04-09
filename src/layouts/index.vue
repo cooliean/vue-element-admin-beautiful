@@ -1,23 +1,47 @@
 <template>
-  <div class="app-wrapper">
-    <div v-if="'horizontal' === layout" class="layout-container-horizontal">
-      <top-bar />
-      <div v-if="tagsView" :class="{ 'tag-view-show': tagsView }">
-        <byui-main>
-          <tags-view />
-        </byui-main>
+  <div class="app-wrapper" :class="classObj">
+    <div
+      v-if="'horizontal' === layout"
+      class="layout-container-horizontal"
+      :class="{
+        fixed: header === 'fixed',
+        'no-tags-view': tagsView === 'false' || tagsView === false,
+      }"
+    >
+      <div :class="header === 'fixed' ? 'fixed-header' : ''">
+        <top-bar />
+        <div
+          v-if="tagsView === 'true' || tagsView === true"
+          :class="{ 'tag-view-show': tagsView }"
+        >
+          <byui-main>
+            <tags-view />
+          </byui-main>
+        </div>
       </div>
       <byui-main class="main-padding">
         <nav-bar />
         <app-main />
       </byui-main>
     </div>
-    <div v-else class="layout-container-vertical">
+    <div
+      v-else
+      class="layout-container-vertical"
+      :class="{
+        fixed: header === 'fixed',
+        'no-tags-view': tagsView === 'false' || tagsView === false,
+      }"
+    >
+      <div
+        v-if="device === 'mobile' && collapse === false"
+        class="mask"
+        @click="handleClickOutside"
+      />
       <side-bar />
       <byui-main :class="collapse ? 'is-collapse-main' : ''">
-        <div class="fixed-header">
+        <div :class="header === 'fixed' ? 'fixed-header' : ''">
           <nav-bar />
-          <tags-view v-if="tagsView" />
+          <tags-view v-if="tagsView === 'true' || tagsView === true" />
         </div>
         <app-main />
       </byui-main>
@@ -32,6 +56,7 @@ import ByuiMain from "@/components/ByuiMain";
 import ByuiBackToTop from "@/components/ByuiBackToTop";
 import { mapGetters } from "vuex";
 import { tokenName } from "@/settings";
+import ResizeMixin from "./mixin/ResizeHandler";
 
 export default {
   name: "Layout",
@@ -47,17 +72,17 @@ export default {
   data() {
     return {};
   },
+  mixins: [ResizeMixin],
   computed: {
-    ...mapGetters(["layout", "tagsView", "collapse"]),
+    ...mapGetters(["layout", "tagsView", "collapse", "header", "device"]),
+    classObj() {
+      return {
+        mobile: this.device === "mobile",
+      };
+    },
   },
   mounted() {
     this.$nextTick(() => {
-      const collapse = this.$store.getters.collapse;
-      if (document.body.clientWidth < 1366 && false === collapse) {
-        this.$store.dispatch("settings/foldSideBar");
-      } else if (document.body.clientWidth >= 1366 && true === collapse) {
-        this.$store.dispatch("settings/openSideBar");
-      }
       window.addEventListener(
         "storage",
         (e) => {
@@ -69,34 +94,58 @@ export default {
       this.baseColorfullLoading();
     });
   },
-  methods: {},
+  methods: {
+    handleClickOutside() {
+      this.$store.dispatch("settings/foldSideBar");
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+@mixin fix-header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 99;
+  width: 100%;
+  overflow: hidden;
+}
+
 .app-wrapper {
-  min-width: $base-main-width;
   width: 100%;
   height: 100%;
   position: relative;
 
   .layout-container-horizontal {
+    position: relative;
+
+    &.fixed {
+      padding-top: 96px;
+    }
+
+    &.fixed.no-tags-view {
+      padding-top: 56px;
+    }
+
     ::v-deep {
+      .byui-main {
+        width: 88%;
+      }
+
+      .fixed-header {
+        @include fix-header;
+      }
+
       .tag-view-show {
         background: $base-color-white;
         box-shadow: $base-box-shadow;
-        transition: all 0.3s;
       }
 
       .nav-bar-container {
-        transition: all 0.3s;
-
-        .byui-main {
-          width: 98%;
-
-          .fold-unfold {
-            display: none;
-          }
+        .fold-unfold {
+          display: none;
         }
       }
 
@@ -105,7 +154,6 @@ export default {
         margin-bottom: 15px;
 
         .app-main-container {
-          transition: all 0.3s;
           background: $base-color-white;
           min-height: calc(100vh - 180px);
         }
@@ -116,25 +164,41 @@ export default {
   .layout-container-vertical {
     position: relative;
 
+    .mask {
+      background: #000;
+      opacity: 0.5;
+      width: 100vw;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 100vh;
+      position: fixed;
+      z-index: 98;
+      overflow: hidden;
+    }
+
+    &.fixed {
+      padding-top: 96px;
+    }
+
+    &.fixed.no-tags-view {
+      padding-top: 56px;
+    }
+
     .byui-main {
-      width: $base-right-content-width;
-      min-width: ($base-main-width) - ($base-left-menu-width-min);
       margin-left: $base-left-menu-width;
       background: #f6f8f9;
       min-height: 100%;
       transition: margin-left 0.28s;
       position: relative;
-      padding-top: 96px;
 
       ::v-deep {
         .fixed-header {
-          position: fixed;
-          top: 0;
+          @include fix-header;
+          transition: all 0.28s;
           left: $base-left-menu-width;
-          right: 0;
-          z-index: 9;
-          width: calc(100vw - 225px);
-          overflow: hidden;
+          width: $base-right-content-width;
         }
 
         .nav-bar-container {
@@ -143,14 +207,14 @@ export default {
         }
 
         .tags-view-container {
-          position: relative;
           padding-left: 8px;
+          padding-right: 8px;
           box-shadow: $base-box-shadow;
         }
 
         .app-main-container {
-          width: calc(100% - 30px);
           margin: 15px auto;
+          width: calc(100% - 30px);
           border-radius: $base-border-radius;
           background: $base-color-white;
           min-height: calc(100vh - 127px);
@@ -160,8 +224,6 @@ export default {
 
       &.is-collapse-main {
         margin-left: $base-left-menu-width-min;
-        width: $base-right-content-width-min;
-        min-width: ($base-main-width) - ($base-left-menu-width);
 
         ::v-deep {
           .fixed-header {
@@ -172,5 +234,48 @@ export default {
       }
     }
   }
+
+  /*手机端开始*/
+  &.mobile {
+    ::v-deep {
+      .el-pager,
+      .el-pagination__jump {
+        display: none;
+      }
+
+      .layout-container-vertical {
+        .byui-main {
+          margin-left: $base-left-menu-width-min !important;
+
+          .app-main-container {
+            margin: 5px !important;
+            width: calc(100% - 10px) !important;
+          }
+        }
+      }
+
+      .byui-main {
+        .fixed-header {
+          left: 0 !important;
+          width: 100% !important;
+        }
+
+        .app-main-container {
+          width: calc(100% - 30px) !important;
+        }
+      }
+
+      &.is-collapse-main {
+        margin-left: $base-left-menu-width-min !important;
+
+        .fixed-header {
+          width: 100% !important;
+          left: 0 !important;
+        }
+      }
+    }
+  }
+
+  /*手机端结束*/
 }
 </style>

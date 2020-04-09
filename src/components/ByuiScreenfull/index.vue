@@ -29,6 +29,7 @@ export default {
         return false;
       }
       screenfull.toggle();
+      this.$emit("refresh");
     },
     change() {
       this.isFullscreen = screenfull.isFullscreen;

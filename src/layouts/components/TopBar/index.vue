@@ -2,10 +2,10 @@
   <div class="top-bar-container">
     <byui-main>
       <el-row>
-        <el-col :span="12">
-          <logo />
+        <el-col :xs="0" :sm="6" :md="6" :lg="6" :xl="6">
+          <logo class="hidden-xs-only" />
         </el-col>
-        <el-col :span="12">
+        <el-col :xs="24" :sm="18" :md="18" :lg="18" :xl="18">
           <el-menu
             :background-color="variables.menuBackground"
             :text-color="variables.menuText"

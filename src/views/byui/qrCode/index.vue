@@ -1,7 +1,7 @@
 <template>
   <div class="qr-code-container">
     <el-row :gutter="15">
-      <el-col :span="4">
+      <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
         <el-card shadow="hover">
           <div slot="header"><span>二维码示例</span></div>
           <a target="_blank" :href="url">
@@ -33,4 +33,14 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.qr-code-container {
+  ::v-deep {
+    .el-card__body {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+    }
+  }
+}
+</style>

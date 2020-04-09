@@ -1,5 +1,5 @@
 <template>
-  <div :style="{ width: width + 'px!important' }">
+  <div>
     <el-scrollbar
       ref="scrollContainer"
       :vertical="false"
@@ -12,7 +12,6 @@
 </template>
 
 <script>
-const elementResizeDetectorMaker = require("element-resize-detector");
 const tagAndTagSpacing = 4;
 
 export default {
@@ -28,19 +27,7 @@ export default {
       return this.$refs.scrollContainer.$refs.wrap;
     },
   },
-  mounted() {
-    let that = this;
-    elementResizeDetectorMaker().listenTo(
-      document.getElementById("tags-view-container"),
-      (element) => {
-        let width = element.offsetWidth;
-        let height = element.offsetHeight;
-        this.$nextTick(() => {
-          that.width = width;
-        });
-      }
-    );
-  },
+  mounted() {},
   methods: {
     handleScroll(e) {
       const eventDelta = e.wheelDelta || -e.deltaY * 40;
@@ -93,18 +80,20 @@ export default {
 
 <style lang="scss" scoped>
 .scroll-container {
+  width: 100%;
   white-space: nowrap;
   overflow: hidden;
 
   ::v-deep {
     .el-scrollbar__bar {
-      bottom: 0px;
+      bottom: 0;
     }
-
+    ::-webkit-scrollbar {
+      display: none;
+    }
     .el-scrollbar__wrap {
-      overflow: hidden;
       height: 44px;
-      margin-bottom: 0px !important;
+      margin-bottom: 0 !important;
     }
   }
 }

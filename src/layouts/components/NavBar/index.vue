@@ -1,7 +1,7 @@
 <template>
   <div class="nav-bar-container">
-    <el-row :gutter="0">
-      <el-col :span="8">
+    <el-row :gutter="15">
+      <el-col :xs="4" :sm="12" :md="12" :lg="12" :xl="12">
         <div class="left-panel">
           <i
             :class="collapse ? 'el-icon-s-unfold' : 'el-icon-s-fold'"
@@ -9,13 +9,13 @@
             class="fold-unfold"
             @click="handleCollapse"
           ></i>
-          <breadcrumb />
+          <breadcrumb class="hidden-xs-only" />
         </div>
       </el-col>
-      <el-col :span="16">
+      <el-col :xs="20" :sm="12" :md="12" :lg="12" :xl="12">
         <div class="right-panel">
           <error-log />
-          <byui-screenfull></byui-screenfull>
+          <byui-screenfull @refresh="refreshSelectedTag"></byui-screenfull>
           <theme-bar></theme-bar>
           <byui-icon
             title="重载路由"
@@ -24,7 +24,10 @@
             :icon="['fas', 'redo']"
           />
 
-          <el-avatar icon="el-icon-user-solid"></el-avatar>
+          <el-avatar
+            class="hidden-xs-only"
+            icon="el-icon-user-solid"
+          ></el-avatar>
           <el-tooltip effect="light" placement="bottom">
             <div slot="content">上次登录时间:{{ lastLoginTime }}</div>
             <span class="user-name">{{ name }}</span>
@@ -108,6 +111,7 @@ export default {
 
 <style lang="scss" scoped>
 .nav-bar-container {
+  user-select: none;
   height: 50px;
   overflow: hidden;
   position: relative;
@@ -120,23 +124,19 @@ export default {
     align-items: center;
     height: 50px;
     max-height: 50px;
+
     .fold-unfold {
       font-size: 20px;
       color: $base-color-gray;
       cursor: pointer;
-      transition: all 0.3s;
-      z-index: 999;
-      margin: 10px;
+      margin-left: 10px;
     }
 
     .fold-unfold.el-icon-s-unfold {
-      transition: all 0.3s;
     }
     ::v-deep {
       .breadcrumb-container {
-        @media screen and (max-width: 1000px) {
-          display: none;
-        }
+        margin-left: 10px;
       }
     }
   }

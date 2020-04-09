@@ -10,6 +10,7 @@ module.exports = {
   tokenTableName: "BYUI-VUE-TABLE", //token表名
   storage: "localStorage", //token存储位置
   logo: true, //是否显示logo
+  header: "noFixed", //固定fixed 不固定noFixed
   layout: "vertical", //横纵布局 horizontal vertical
   themeBar: true, //是否开启主题配置按钮
   tagsView: true, //是否显示多标签页
@@ -20,7 +21,7 @@ module.exports = {
   invalidCode: 402, //登录失效code
   errorCode: 500, //系统异常code
   noPermissionCode: 401, //无权限code
-  errorLog: ["development"], //是否显示在页面高亮错误
+  errorLog: ["development", "staging", "production"], //是否显示在页面高亮错误
   shieldF12: false, //设置生产环境是否屏蔽f12等开发组工具快捷键
   loginInterception: true, //是否开启登录拦截
   loginRSA: true, //是否开启登录RSA加密

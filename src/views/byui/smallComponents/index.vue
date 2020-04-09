@@ -1,12 +1,12 @@
 <template>
   <div class="small-components-container">
     <el-row :gutter="15">
-      <el-col :span="24">
+      <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
         <el-divider content-position="left"
           >为演示方便，每隔五5秒重新渲染
         </el-divider>
       </el-col>
-      <el-col :span="6">
+      <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
         <el-card shadow="hover">
           <div slot="header">
             <span>snow</span>
@@ -14,7 +14,7 @@
           <byui-snow></byui-snow>
         </el-card>
       </el-col>
-      <el-col :span="6">
+      <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
         <el-card shadow="hover">
           <div slot="header">
             <span>profile</span>
@@ -32,7 +32,7 @@
           ></byui-profile>
         </el-card>
       </el-col>
-      <el-col :span="6">
+      <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
         <el-card shadow="hover">
           <div slot="header">
             <span>solidText</span>
@@ -49,7 +49,7 @@
           ></byui-solid-text>
         </el-card>
       </el-col>
-      <el-col :span="6">
+      <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
         <el-card shadow="hover">
           <div slot="header">
             <span>faultText</span>
@@ -64,7 +64,7 @@
           </byui-fault-text>
         </el-card>
       </el-col>
-      <el-col :span="6">
+      <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
         <el-card shadow="hover">
           <div slot="header">
             <span>charge</span>

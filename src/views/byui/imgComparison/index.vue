@@ -1,7 +1,15 @@
 <template>
   <div class="image-comparison-container">
     <el-row :gutter="15">
-      <el-col v-for="(item, index) in 24" :key="index" :span="8">
+      <el-col
+        v-for="(item, index) in 24"
+        :key="index"
+        :xs="24"
+        :sm="24"
+        :md="12"
+        :lg="8"
+        :xl="8"
+      >
         <byui-comparison
           :id="'silder-' + index"
           style="margin-bottom: 12px;"

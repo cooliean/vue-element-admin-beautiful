@@ -1,6 +1,6 @@
 <template>
   <div class="colorful-icon-container">
-    <el-divider content-position="left">点击图标即可复制源码 </el-divider>
+    <el-divider content-position="left">点击图标即可复制源码</el-divider>
     <el-row :gutter="15">
       <el-col :span="24">
         <el-form
@@ -27,7 +27,15 @@
         </el-form>
       </el-col>
 
-      <el-col v-for="(item, index) in queryIcon" :key="index" :span="2">
+      <el-col
+        v-for="(item, index) in queryIcon"
+        :key="index"
+        :xs="6"
+        :sm="8"
+        :md="3"
+        :lg="2"
+        :xl="2"
+      >
         <el-card
           shadow="hover"
           style="cursor: pointer;"

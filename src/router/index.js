@@ -11,16 +11,6 @@ export const constantRoutes = [
     hidden: true,
   },
   {
-    path: "/401",
-    component: () => import("@/views/401"),
-    hidden: true,
-  },
-  {
-    path: "/404",
-    component: () => import("@/views/404"),
-    hidden: true,
-  },
-  {
     path: "/redirect",
     component: Layout,
     hidden: true,
@@ -54,6 +44,19 @@ export const asyncRoutes = [
     ],
   },
   {
+    path: "/test",
+    component: Layout,
+    redirect: "noRedirect",
+    children: [
+      {
+        path: "/test",
+        name: "Test",
+        component: () => import("@/views/test/index"),
+        meta: { title: "Webstorm最新版激活", icon: "marker" },
+      },
+    ],
+  },
+  {
     path: "/permission",
     component: Layout,
     redirect: "noRedirect",
@@ -63,19 +66,6 @@ export const asyncRoutes = [
         name: "Permission",
         component: () => import("@/views/byui/permission/index"),
         meta: { title: "权限控制", icon: "marker" },
-      },
-    ],
-  },
-  {
-    path: "/test",
-    component: Layout,
-    redirect: "noRedirect",
-    children: [
-      {
-        path: "/test",
-        name: "Test",
-        component: () => import("@/views/test/index"),
-        meta: { title: "test", icon: "marker" },
       },
     ],
   },
@@ -219,12 +209,22 @@ export const asyncRoutes = [
         component: () => import("@/views/byui/errorLog/index"),
         meta: { title: "错误日志模拟" },
       },
-      {
-        path: "*",
-        redirect: "/404",
-        hidden: true,
-      },
     ],
+  },
+  {
+    path: "/401",
+    component: () => import("@/views/401"),
+    meta: { title: "401错误页演示", icon: "bug" },
+  },
+  {
+    path: "/404",
+    component: () => import("@/views/404"),
+    meta: { title: "404错误页演示", icon: "bug" },
+  },
+  {
+    path: "*",
+    redirect: "/404",
+    hidden: true,
   },
 ];
 const createRouter = () =>

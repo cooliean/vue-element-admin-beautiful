@@ -15,17 +15,22 @@
 
 ## 简介
 
-演示地址:[vue-element-admin-beautiful](http://chu1204505056.gitee.io/byui/#/login?redirect=%2F)
+演示地址:[vue-element-admin-beautiful](http://chu1204505056.gitee.io)
+演示地址(备份):[vue-element-admin-beautiful](http://chu1204505056.gitee.io/byui)
 
 ## 官方问题解答群 972435319
 
-## 付费定制 最先更新 最优方案 联系 qq 1204505056
+## qq 1204505056 微信 chu1204505056 qq 群[972435319](//shang.qq.com/wpa/qunwpa?idkey=00db5d4f8037fb577d128c2654de0bef68d32e55a41431b07a08a1d4446bb587)
 
 ## 鸣谢 花裤衩的开源项目给了我很多灵感
 
 ## 捐赠
 
 ![image](https://chu1204505056.gitee.io/byui-bookmarks/img/donation.png)
+
+## 感谢
+
+感谢捐赠者 每当看到微信钱包有入账的时候 都非常的激动 但我不知道你们的名字 谢谢你们的支持 如果您有任何问题都可以微信 QQ 找我一起讨论
 
 ## 目录结构
 
@@ -75,7 +80,7 @@ git clone https://github.com/chuzhixin/vue-element-admin-beautiful.git
 
 # 进入项目目录
 cd vue-element-admin-beautiful
-# 安装依赖
+# 安装依赖,一定要用cnpm,不要试图去用npm换成淘宝镜像这种方式,最近情况特殊,国外网站封锁的厉害
 cnpm i
 # 本地开发 启动项目
 npm run serve

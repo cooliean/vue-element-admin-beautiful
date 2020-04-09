@@ -5,7 +5,7 @@
     </p>
     <br />
     <el-row :gutter="15">
-      <el-col :span="12">
+      <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
         <div class="grid-content bg-pruple tree-box">
           <p>
             接口直接返回整棵树：目前支持功能——关键字过滤、自定义操作（添加、编辑、删除...）、初始树显示三层结构（openTree的n传入数值决定）、树的多选操作监听、点击树监听
@@ -60,7 +60,7 @@
           </el-tree>
         </div>
       </el-col>
-      <el-col :span="12">
+      <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
         <div class="grid-content bg-pruple tree-box">
           <br />
           <p>
@@ -173,7 +173,7 @@
     <br />
     <div>
       <el-row :gutter="15">
-        <el-col :span="12">
+        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
           <div class="grid-content bg-pruple tree-box">
             <br />
             <p>单选树</p>
@@ -207,7 +207,7 @@
             </el-select>
           </div>
         </el-col>
-        <el-col :span="12">
+        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
           <div class="grid-content bg-pruple tree-box">
             <br />
             <p>

@@ -12,7 +12,7 @@
         </el-card>
       </el-col>
 
-      <el-col :span="6">
+      <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
         <el-card shadow="hover">
           <div slot="header">
             <span>去除数组array中的最后一个元素</span>
@@ -25,7 +25,7 @@
         </el-card>
       </el-col>
 
-      <el-col :span="6">
+      <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
         <el-card shadow="hover">
           <div slot="header">
             <span>返回数组 array的第一个元素</span>
@@ -38,7 +38,7 @@
         </el-card>
       </el-col>
 
-      <el-col :span="6">
+      <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
         <el-card shadow="hover">
           <div slot="header"><span>合并数组</span></div>
           <div class="lodash-content">
@@ -49,7 +49,7 @@
         </el-card>
       </el-col>
 
-      <el-col :span="6">
+      <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
         <el-card shadow="hover">
           <div slot="header"><span>左切片</span></div>
           <div class="lodash-content">
@@ -60,7 +60,7 @@
         </el-card>
       </el-col>
 
-      <el-col :span="6">
+      <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
         <el-card shadow="hover">
           <div slot="header"><span>右切片</span></div>
           <div class="lodash-content">
@@ -71,7 +71,7 @@
         </el-card>
       </el-col>
 
-      <el-col :span="6">
+      <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
         <el-card shadow="hover">
           <div slot="header"><span>修改拼接</span></div>
           <div class="lodash-content">
@@ -82,7 +82,7 @@
         </el-card>
       </el-col>
 
-      <el-col :span="6">
+      <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
         <el-card shadow="hover">
           <div slot="header"><span>获取数组最后一个元素</span></div>
           <div class="lodash-content">
@@ -93,7 +93,7 @@
         </el-card>
       </el-col>
 
-      <el-col :span="6">
+      <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
         <el-card shadow="hover">
           <div slot="header"><span>数组去重</span></div>
           <div class="lodash-content">
@@ -104,7 +104,7 @@
         </el-card>
       </el-col>
 
-      <el-col :span="6">
+      <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
         <el-card shadow="hover">
           <div slot="header"><span>获取数组的最大值</span></div>
           <div class="lodash-content">
@@ -115,7 +115,7 @@
         </el-card>
       </el-col>
 
-      <el-col :span="6">
+      <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
         <el-card shadow="hover">
           <div slot="header"><span>获取数组的最小值</span></div>
           <div class="lodash-content">
@@ -126,7 +126,7 @@
         </el-card>
       </el-col>
 
-      <el-col :span="6">
+      <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
         <el-card shadow="hover">
           <div slot="header">
             <span>四舍五入(保留任意位小数)</span>
@@ -139,7 +139,7 @@
         </el-card>
       </el-col>
 
-      <el-col :span="6">
+      <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
         <el-card shadow="hover">
           <div slot="header"><span>数组内数据相加</span></div>
           <div class="lodash-content">
@@ -150,7 +150,7 @@
         </el-card>
       </el-col>
 
-      <el-col :span="6">
+      <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
         <el-card shadow="hover">
           <div slot="header"><span>返回随机数</span></div>
           <div class="lodash-content">
@@ -161,7 +161,7 @@
         </el-card>
       </el-col>
 
-      <el-col :span="6">
+      <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
         <el-card shadow="hover">
           <div slot="header"><span>返回数组内的随机数</span></div>
           <div class="lodash-content">
@@ -172,7 +172,7 @@
         </el-card>
       </el-col>
 
-      <el-col :span="6">
+      <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
         <el-card shadow="hover">
           <div slot="header"><span>事件防抖动</span></div>
           <div class="lodash-content">
@@ -198,7 +198,12 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.lodash-content {
+.lodash-container {
   text-align: left;
+  ::v-deep {
+    .lodash-content {
+      min-height: 150px;
+    }
+  }
 }
 </style>

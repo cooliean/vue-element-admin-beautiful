@@ -1,25 +1,25 @@
 <template>
   <div class="player-container">
     <el-row :gutter="15">
-      <el-col :span="12">
+      <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
         <el-card shadow="hover">
           <div slot="header">播放传统MP4</div>
           <byui-player-mp4 :config="config1" @player="Player1 = $event" />
         </el-card>
       </el-col>
-      <el-col :span="12">
+      <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
         <el-card shadow="hover">
           <div slot="header">播放m3u8,且不暴露视频地址</div>
           <byui-player-hls :config="config2" @player="Player2 = $event" />
         </el-card>
       </el-col>
-      <el-col :span="12">
+      <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
         <el-card shadow="hover">
           <div slot="header">播放flv,且不暴露视频地址</div>
           <byui-player-flv :config="config3" @player="Player3 = $event" />
         </el-card>
       </el-col>
-      <el-col :span="12">
+      <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
         <el-card shadow="hover">
           <div slot="header">视频大数据专用</div>
           <byui-player-custom

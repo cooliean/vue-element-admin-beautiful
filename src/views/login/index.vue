@@ -2,7 +2,7 @@
   <div class="login-container">
     <div class="login-logo-bysj"></div>
     <el-row>
-      <el-col :span="12">
+      <el-col :xs="24" :sm="24" :md="24" :lg="10" :xl="10">
         <el-form
           ref="loginForm"
           :model="loginForm"
@@ -175,15 +175,9 @@ export default {
 
 <style lang="scss" scoped>
 .login-container {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
   background: url("~@/assets/login_images/background2.png") no-repeat;
   background-size: cover;
-
+  height: 100vh;
   .title {
     height: 50px;
     font-size: 54px;
@@ -231,14 +225,10 @@ export default {
 
   .login-form {
     position: relative;
-    width: 577px;
     max-width: 100%;
-    min-width: 500px;
     background-size: 100% 100%;
-    padding: 60px 40px 50px 40px;
     overflow: hidden;
-    margin-top: 200px;
-    margin-left: 200px;
+    margin: 22vh 10% 10%;
 
     .forget-password {
       width: 100%;
@@ -300,11 +290,6 @@ export default {
     color: $base-font-color;
     cursor: pointer;
     user-select: none;
-  }
-
-  .login-left {
-    width: 388px;
-    margin-top: 20px;
   }
 
   ::v-deep {

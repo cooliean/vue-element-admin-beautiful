@@ -1,9 +1,13 @@
 <template>
   <div :class="'logo-container-' + layout">
-    <byui-icon v-if="logo" class="logo" :icon="['fas', 'trophy']"></byui-icon>
-    <span class="title" :title="title">
-      {{ title }}
-    </span>
+    <router-link to="/">
+      <!-- <svg-icon class="logo" icon-class="icon" />-->
+      <byui-icon class="logo" :icon="['fas', 'piggy-bank']"></byui-icon>
+      <!--<svg-icon class="logo" icon-class="alarm_clock" />-->
+      <span class="title" :title="title">
+        {{ title }}
+      </span>
+    </router-link>
   </div>
 </template>
 <script>
@@ -36,7 +40,6 @@ export default {
   height: 32px;
   vertical-align: middle;
   margin-right: 5px;
-  margin-top: 3px;
   color: $base-title;
 }
 

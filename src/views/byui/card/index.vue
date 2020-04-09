@@ -1,7 +1,15 @@
 <template>
   <div class="card-container">
     <el-row :gutter="15">
-      <el-col v-for="(item, index) in list" :key="index" :span="4">
+      <el-col
+        v-for="(item, index) in list"
+        :key="index"
+        :xs="24"
+        :sm="8"
+        :md="8"
+        :lg="8"
+        :xl="4"
+      >
         <el-card shadow="hover">
           <div slot="header">
             <span>{{ item.title }}</span>

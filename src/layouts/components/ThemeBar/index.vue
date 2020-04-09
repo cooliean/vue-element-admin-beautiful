@@ -1,16 +1,31 @@
 <template>
   <span v-if="themeBar">
-    <byui-icon
-      title="主题配置"
+    <el-popover
       @click="handleChangeTheme"
-      :icon="['fas', 'brush']"
-    />
+      placement="bottom"
+      width="200"
+      trigger="manual"
+      v-model="popoverVisible"
+    >
+      <byui-icon
+        title="主题配置"
+        slot="reference"
+        @click="handleChangeTheme"
+        :icon="['fas', 'brush']"
+      />
+      <p>点这里进行主题配置</p>
+      <div style="text-align: right; margin: 0;">
+        <el-button type="text" size="mini" @click="popoverVisible = false">
+          确定
+        </el-button>
+      </div>
+    </el-popover>
     <el-drawer
       title="主题配置"
       :visible.sync="drawerVisible"
       direction="rtl"
       append-to-body
-      size="20%"
+      size="300px"
     >
       <div class="el-drawer__body">
         <el-form :model="theme" ref="form">
@@ -18,6 +33,18 @@
             <el-radio-group v-model="theme.layout">
               <el-radio-button label="vertical">纵向布局</el-radio-button>
               <el-radio-button label="horizontal">横向布局</el-radio-button>
+            </el-radio-group>
+          </el-form-item>
+          <el-form-item label="头部">
+            <el-radio-group v-model="theme.header">
+              <el-radio-button label="fixed">固定头部</el-radio-button>
+              <el-radio-button label="noFixed">不固定头部</el-radio-button>
+            </el-radio-group>
+          </el-form-item>
+          <el-form-item label="多标签">
+            <el-radio-group v-model="theme.tagsView">
+              <el-radio-button label="true">开启</el-radio-button>
+              <el-radio-button label="false">不开启</el-radio-button>
             </el-radio-group>
           </el-form-item>
           <el-form-item label="菜单主题色">
@@ -51,7 +78,7 @@
           </el-form-item>
           <el-form-item>
             <el-button @click="handleSetDfaultTheme">恢复默认</el-button>
-            <el-button type="primary" @click="handleSaveColors">保存</el-button>
+            <el-button type="primary" @click="handleSaveTheme">保存</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -68,10 +95,13 @@ export default {
   name: "ThemeBar",
   data() {
     return {
+      popoverVisible: false,
       themeBar,
       drawerVisible: false,
       theme: {
         layout: "",
+        header: "",
+        tagsView: "",
         menuBackground: variables.menuBackground,
         menuActiveBackground: variables.menuActiveBackground,
         tagViewsActiveBackground: variables.tagViewsActiveBackground,
@@ -79,12 +109,16 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["layout"]),
+    ...mapGetters(["layout", "header", "tagsView"]),
   },
-  mounted() {},
+  mounted() {
+    this.popoverVisible = true;
+  },
   created() {
     const theme = localStorage.getItem("BYUI-VUE-THEME");
     this.theme.layout = this.layout;
+    this.theme.header = this.header;
+    this.theme.tagsView = this.tagsView;
     if (null !== theme) {
       this.$set(this.theme, "menuBackground", JSON.parse(theme).menuBackground);
       this.$set(
@@ -97,16 +131,18 @@ export default {
         "tagViewsActiveBackground",
         JSON.parse(theme).tagViewsActiveBackground
       );
-      this.handleSaveColors();
+      this.handleSetTheme();
     }
   },
   methods: {
     handleChangeTheme() {
       this.drawerVisible = true;
     },
-    handleSaveColors() {
+    handleSetTheme() {
       $("#BYUI-VUE-THEME").remove();
       let layout = this.theme.layout;
+      let header = this.theme.header;
+      let tagsView = this.theme.tagsView;
       let menuBackground = this.theme.menuBackground;
       let menuActiveBackground = this.theme.menuActiveBackground;
       let tagViewsActiveBackground = this.theme.tagViewsActiveBackground;
@@ -121,22 +157,38 @@ export default {
         "BYUI-VUE-THEME",
         `{"menuBackground":"${menuBackground}","menuActiveBackground":"${menuActiveBackground}","tagViewsActiveBackground":"${tagViewsActiveBackground}"}`
       );
-      this.handleSwitch(layout);
+      this.handleSwitchLayout(layout);
+      this.handleSwitchHeader(header);
+      this.handleSwitchTagsView(tagsView);
       this.drawerVisible = false;
+    },
+    handleSaveTheme() {
+      this.handleSetTheme();
+      location.reload();
     },
     handleSetDfaultTheme() {
       $("#BYUI-VUE-THEME").remove();
       localStorage.removeItem("BYUI-VUE-THEME");
       localStorage.removeItem("BYUI-VUE-LAYOUT");
+      localStorage.removeItem("BYUI-VUE-HEADER");
+      localStorage.removeItem("BYUI-VUE-TAGS-VIEW");
       this.$store.dispatch("settings/changeLayout", this.theme.layout);
       this.$refs["form"].resetFields();
       Object.assign(this.$data, this.$options.data());
       this.drawerVisible = false;
       location.reload();
     },
-    handleSwitch(layout) {
+    handleSwitchLayout(layout) {
       localStorage.setItem("BYUI-VUE-LAYOUT", layout);
       this.$store.dispatch("settings/changeLayout", layout);
+    },
+    handleSwitchHeader(header) {
+      localStorage.setItem("BYUI-VUE-HEADER", header);
+      this.$store.dispatch("settings/changeHeader", header);
+    },
+    handleSwitchTagsView(tagsView) {
+      localStorage.setItem("BYUI-VUE-TAGS-VIEW", tagsView);
+      this.$store.dispatch("settings/changeTagsView", tagsView);
     },
   },
 };
